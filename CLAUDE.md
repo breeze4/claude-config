@@ -18,3 +18,5 @@ Make sure to use .gitignore to help figure out which are the source files and wh
 
 Do not provide estimates like "number of hours" or days for tasks.
 
+Never add AI as a co-author in git commits. Never mention AI or Claude in commit messages.
+

@@ -1,0 +1,40 @@
+# Credentials and secrets
+.credentials.json
+
+# Session and runtime data
+cache/
+debug/
+file-history/
+history.jsonl
+ide/
+paste-cache/
+plans/
+session-env/
+shell-snapshots/
+todos/
+
+# Project-specific state (per-repo settings)
+projects/
+
+# Personal settings (may contain sensitive config)
+settings.json
+
+# Analytics and telemetry
+stats-cache.json
+statsig/
+telemetry/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Local customizations
+*.local.md
+*.local.json

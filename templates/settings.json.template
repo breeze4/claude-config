@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "{{PERMISSION_PATTERNS}}"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "{{HOOK_CONFIGURATIONS}}"
+  }
+}

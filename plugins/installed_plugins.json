@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "plugins": {
+    "document-skills@anthropic-agent-skills": [
+      {
+        "scope": "user",
+        "installPath": "/home/breeze/.claude/plugins/cache/anthropic-agent-skills/document-skills/unknown",
+        "version": "unknown",
+        "installedAt": "2025-12-20T18:03:22.173Z",
+        "lastUpdated": "2025-12-20T18:03:22.173Z",
+        "gitCommitSha": "be229a5d5124887bbe8615023061a6c55d3c045c",
+        "isLocal": true
+      }
+    ],
+    "example-skills@anthropic-agent-skills": [
+      {
+        "scope": "user",
+        "installPath": "/home/breeze/.claude/plugins/cache/anthropic-agent-skills/example-skills/unknown",
+        "version": "unknown",
+        "installedAt": "2025-12-20T18:03:22.173Z",
+        "lastUpdated": "2025-12-20T18:03:22.173Z",
+        "gitCommitSha": "be229a5d5124887bbe8615023061a6c55d3c045c",
+        "isLocal": true
+      }
+    ],
+    "typescript-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/breeze/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2025-12-23T17:32:13.068Z",
+        "lastUpdated": "2025-12-23T17:32:13.068Z",
+        "isLocal": true
+      }
+    ]
+  }
+}

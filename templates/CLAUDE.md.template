@@ -1,0 +1,38 @@
+# {{PROJECT_NAME}}
+
+## Project Overview
+
+{{PROJECT_DESCRIPTION}}
+
+**Tech Stack:** {{TECH_STACK}}
+**Build:** {{BUILD_COMMAND}}
+**Test:** {{TEST_COMMAND}}
+
+## Ralph Configuration
+
+### Scope
+{{RALPH_SCOPE}}
+
+### Boundaries
+{{RALPH_BOUNDARIES}}
+
+### Autonomy Level
+{{AUTONOMY_LEVEL}}
+
+## Task Tracking
+
+{{TASK_TRACKING_INSTRUCTIONS}}
+
+## Verification
+
+Before committing, Ralph must verify:
+
+{{VERIFICATION_CHECKLIST}}
+
+## Workflow
+
+{{WORKFLOW_INSTRUCTIONS}}
+
+## Project-Specific Notes
+
+{{PROJECT_NOTES}}

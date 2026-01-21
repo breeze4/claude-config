@@ -16,6 +16,9 @@ todos/
 # Project-specific state (per-repo settings)
 projects/
 
+# Plugin marketplaces (external repos)
+plugins/marketplaces/
+
 # Personal settings (may contain sensitive config)
 settings.json
 

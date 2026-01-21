@@ -809,6 +809,81 @@ Complete workflow for autonomous development:
 
 ---
 
+## Command: browse
+
+### Purpose
+Interactive browser automation for web navigation, testing, and data extraction using the `agent-browser` CLI.
+
+### Process
+
+1. **Parse Request** - Identify the browsing task from user input
+2. **Execute** - Use agent-browser skill to translate task into CLI commands
+3. **Snapshot-Interact Loop** - Navigate, snapshot for refs, interact using refs
+4. **Report** - Return results, screenshots, or extracted data
+
+### Usage
+
+```
+/browse Navigate to Hacker News and summarize the top 3 stories
+/browse Test the login flow on localhost:3000
+/browse Fill out the contact form on example.com
+```
+
+### Workflow Pattern
+
+The command follows the snapshot-interact pattern:
+1. `agent-browser open <url>` - Navigate
+2. `agent-browser snapshot -i` - Get interactive elements with refs
+3. Use refs (@e1, @e2, etc.) for interactions
+4. Re-snapshot after navigation or DOM changes
+
+---
+
+## Skill: agent-browser
+
+### Purpose
+CLI-based browser automation using ref-based element selection.
+
+### Core Pattern
+
+```
+open → snapshot -i → interact with @refs → re-snapshot as needed
+```
+
+### Key Commands
+
+| Category | Command | Purpose |
+|----------|---------|---------|
+| Navigate | `open`, `back`, `forward`, `reload`, `close` | Page navigation |
+| Snapshot | `snapshot -i` | Get elements with refs |
+| Interact | `click`, `fill`, `type`, `press`, `select` | Element actions |
+| Read | `get text`, `get value`, `get title` | Extract data |
+| Wait | `wait @e1`, `wait --text "X"` | Synchronization |
+| Screenshot | `screenshot path.png` | Capture state |
+
+### Files
+
+- `skills/agent-browser/SKILL.md` - Full command reference and workflow patterns
+
+---
+
+## Agent: browser-agent
+
+### Purpose
+Delegated browser automation tasks requiring isolated context.
+
+### When to Use
+- Multi-step browsing workflows
+- Parallel browser sessions
+- QA testing requiring isolation
+- Data extraction from multiple pages
+
+### Tools
+- Bash (for agent-browser CLI commands)
+- Read, Write (for saving results)
+
+---
+
 ## Future Extensions
 
 - `/sync_ralph` - Update configuration when project changes

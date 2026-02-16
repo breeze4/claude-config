@@ -1,5 +1,6 @@
 # Credentials and secrets
 .credentials.json
+auth.json
 
 # Session and runtime data
 cache/

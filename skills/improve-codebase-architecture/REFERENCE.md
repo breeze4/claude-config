@@ -33,4 +33,4 @@ The core principle: **replace, don't layer.**
 
 ## Spec Output
 
-The skill outputs a lightweight spec to `docs/specs/YYYY-MM-DD-NN-slug.md`. See step 7 in SKILL.md for the template. This spec feeds into the standard pipeline: `/research` → `/spec-to-plans` → `/plans-to-prompt`.
+The skill outputs a lightweight spec (with Dependency Strategy and Testing Strategy optional sections) to `docs/specs/YYYY-MM-DD-NN-slug.md`. See [SPEC_TEMPLATE.md](../shared/SPEC_TEMPLATE.md) for the template. This spec feeds into the standard pipeline: `/research` → `/spec-to-plans` → `/plans-to-prompt`.

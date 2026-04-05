@@ -18,8 +18,8 @@ Before diving in, assess whether this needs a **full PRD** or a **lightweight sp
 | Single vertical slice, "add X to every layer" | | Yes |
 | Extending an existing pattern with no new architecture | | Yes |
 
-**Full PRD**: follow all steps below, use the full PRD template.
-**Lightweight spec**: skip the exhaustive interview (step 3 — ask only clarifying questions if something is ambiguous), skip user stories, and use the lightweight template at the bottom of this skill. The lightweight template covers Problem/Solution/Data Flow/Behavior — enough for spec-to-plans to work with.
+**Full PRD**: follow all steps below, use the full PRD template from [SPEC_TEMPLATE.md](../shared/SPEC_TEMPLATE.md).
+**Lightweight spec**: skip the exhaustive interview (step 3 — ask only clarifying questions if something is ambiguous), skip user stories, and use the lightweight spec template from [SPEC_TEMPLATE.md](../shared/SPEC_TEMPLATE.md). The lightweight template covers Problem/Solution/Data Flow/Behavior/Judgment Calls — enough for spec-to-plans to work with.
 
 Tell the user which mode you're recommending and why. They can override.
 
@@ -41,97 +41,6 @@ For each module, identify whether it **defines** a shared interface (model, sche
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. Save it to `docs/specs/YYYY-MM-DD-NN-slug.md` in the project directory (check existing files in `docs/specs/` to determine the next NN).
+5. Once you have a complete understanding of the problem and solution, write the spec using the appropriate template from [SPEC_TEMPLATE.md](../shared/SPEC_TEMPLATE.md). Save it to `docs/specs/YYYY-MM-DD-NN-slug.md` in the project directory (check existing files in `docs/specs/` to determine the next NN).
 
-<prd-template>
-
-## Problem Statement
-
-The problem that the user is facing, from the user's perspective.
-
-## Solution
-
-The solution to the problem, from the user's perspective.
-
-## User Stories
-
-A LONG, numbered list of user stories. Each user story should be in the format of:
-
-1. As an <actor>, I want a <feature>, so that <benefit>
-
-<user-story-example>
-1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
-</user-story-example>
-
-This list of user stories should be extremely extensive and cover all aspects of the feature.
-
-## Modules
-
-Modules identified during the interview. For each:
-
-- **<Module name>**: <brief description>
-  - Role: **defines** | **consumes** shared interface
-  - Interface: <what it exposes or depends on>
-  - Test: yes | no (per user decision)
-
-Do NOT include specific file paths — they change. Name concepts and responsibilities.
-
-## Resolved Decisions
-
-Decisions made during the interview, with reasoning. Each entry should capture the tradeoff that was considered and why this option was chosen.
-
-- **<Decision>**: <what was chosen> — <why, what was the alternative>
-
-Categories: architectural decisions, schema changes, API contracts, technical clarifications, specific interactions.
-
-## Judgment Calls
-
-Decisions that could NOT be resolved during the interview — the user said "I don't know yet," "depends on the code," or the answer requires investigation. These carry forward as structured data for `/research` and `/spec-to-plans`.
-
-- [ ] **<Short description>**: <context and options>
-  - Option A: <description> — <tradeoff>
-  - Option B: <description> — <tradeoff>
-  - Resolution: <blank until resolved>
-
-Omit this section if all decisions were resolved.
-
-## Testing Decisions
-
-- Which modules will be tested (reference Modules section above)
-- Prior art for the tests (similar types of tests in the codebase)
-- Frontend verification strategy: if the feature adds UI elements, note whether automated component tests, agent-browser screenshots, or manual smoke-testing is expected. Surface gaps explicitly — "N modules modify frontend with no test coverage beyond build"
-
-## Out of Scope
-
-What is explicitly NOT part of this work. Be specific — vague exclusions don't prevent scope creep.
-
-</prd-template>
-
-<lightweight-spec-template>
-
-## Problem
-
-The problem the user is facing, concisely stated.
-
-## Solution
-
-The solution, concisely stated. Include what fields/values/parameters are being added.
-
-## Data Flow
-
-How data moves through the system — which layers are touched and in what order. Name the functions/endpoints/components but not file paths (those change).
-
-## Behavior
-
-Bullet list of observable behaviors: defaults, edge cases (NULLs), clone/copy behavior, what happens to existing data.
-
-## Judgment Calls
-
-- [ ] **<Short description>**: <context and options>
-  - Option A: <description> — <tradeoff>
-  - Option B: <description> — <tradeoff>
-  - Resolution: <blank until resolved>
-
-Omit this section if no ambiguity exists.
-
-</lightweight-spec-template>
+   For the full PRD, include the Dependency Strategy and/or Testing Strategy optional sections if the work involves architecture or testing concerns.

@@ -69,44 +69,8 @@ After comparing, give your own recommendation: which design you think is stronge
 
 ### 7. Write spec
 
-Write the chosen design as a spec to `docs/specs/YYYY-MM-DD-NN-slug.md` (check existing files to determine the next NN). Use the lightweight spec template from `/grill-me` as the base, extended with architecture-specific sections:
+Write the chosen design using the lightweight spec template from [SPEC_TEMPLATE.md](../shared/SPEC_TEMPLATE.md). Save to `docs/specs/YYYY-MM-DD-NN-slug.md` (check existing files to determine the next NN).
 
-```markdown
-## Problem
-
-The architectural friction: which modules are shallow and tightly coupled, what integration risk exists, why this makes the codebase harder to navigate and maintain.
-
-## Solution
-
-The chosen interface design:
-- Interface signature (types, methods, params)
-- Usage example showing how callers use it
-- What complexity it hides internally
-
-## Dependency Strategy
-
-Which category applies (from [REFERENCE.md](REFERENCE.md)) and how dependencies are handled:
-- **In-process**: merged directly
-- **Local-substitutable**: tested with [specific stand-in]
-- **Ports & adapters**: port definition, production adapter, test adapter
-- **Mock**: mock boundary for external services
-
-## Data Flow
-
-How data moves through the deepened module — which layers are touched and in what order.
-
-## Behavior
-
-- What the module should own (responsibilities)
-- What it should hide (implementation details)
-- What it should expose (the interface contract)
-- How callers should migrate to the new interface
-
-## Testing Strategy
-
-- New boundary tests to write (behaviors to verify at the interface)
-- Old tests to delete (shallow module tests that become redundant)
-- Test environment needs (local stand-ins, adapters)
-```
+Always include the **Dependency Strategy** and **Testing Strategy** optional sections (see SPEC_TEMPLATE.md). For the Solution section, include the interface signature, usage example, and what complexity is hidden. For dependency categories, see [REFERENCE.md](REFERENCE.md).
 
 This spec is now a first-class pipeline artifact — the user can run `/research` against it to map it to concrete files, then `/spec-to-plans` to break it into vertical slices.

@@ -9,9 +9,16 @@ Ask the user for the spec source. This can be:
 - A local file path — read directly
 - Already in context from conversation
 
-### 2. Explore the codebase (optional)
+### 2. Locate the research artifact
 
-If you have not already explored the codebase, do so to understand the current state of the code.
+Check `docs/research/` for a research artifact that references this spec (match by spec filename in the **Source** field). If found:
+
+- Read it fully — it contains the file map, patterns, judgment calls, and dependency findings you need
+- Check for unresolved judgment calls (unchecked `- [ ]` items in the Judgment Calls section). If any exist, present them to the user for resolution before proceeding to step 3
+- Use the File Map to populate Owns and Must Not Touch fields in plans
+- Use Patterns & Conventions to populate Pattern Exemplar fields in plans
+
+If no research artifact exists, do a lightweight codebase exploration to understand the current state. Note: for complex specs, recommend the user run `/research` first — the plans will be significantly better with a research artifact backing them.
 
 ### 3. Draft vertical slices
 
@@ -47,7 +54,7 @@ Iterate until the user approves the breakdown.
 
 ### 5. Create the plan files
 
-For each approved slice, create a markdown file in `docs/plans/` using the naming convention `<number>-<short-name>.md` (e.g., `01-auth-flow.md`, `02-data-model.md`).
+For each approved slice, create a markdown file in `docs/plans/` using the naming convention `YYYY-MM-DD-NN-slug.md` (e.g., `2026-04-04-01-auth-flow.md`, `2026-04-04-02-data-model.md`). Check existing files to determine the next NN.
 
 Number plans in dependency order (blockers first). Use the plan template below.
 
@@ -68,7 +75,7 @@ HITL / AFK
 
 ## Blocked by
 
-- Blocked by `<number>-<name>.md` (if any)
+- Blocked by `<YYYY-MM-DD-NN-name>.md` (if any)
 
 Or "None - can start immediately" if no blockers.
 
@@ -97,13 +104,13 @@ When a plan modifies specific functions within a shared file (e.g., one endpoint
 
 Files/directories explicitly outside this plan's scope. Include files that a later plan will modify, even if touching them seems natural.
 
-- `<file or directory path>` — owned by plan `<NN-name>.md`
+- `<file or directory path>` — owned by plan `<YYYY-MM-DD-NN-name>.md`
 
 ## Defines interfaces
 
 If this plan creates or modifies shared interfaces (models, schemas, API shapes, service return types) that other plans consume, list them here. This tells plans-to-prompt where to insert interface verification gates.
 
-- `<interface name>` in `<file path>` — consumed by plans `<NN>`, `<NN>`
+- `<interface name>` in `<file path>` — consumed by plans `<YYYY-MM-DD-NN>`, `<YYYY-MM-DD-NN>`
 
 Or "None" if this plan only consumes existing interfaces.
 

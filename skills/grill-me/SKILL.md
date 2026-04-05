@@ -31,6 +31,8 @@ Tell the user which mode you're recommending and why. They can override.
 
 3. Interview the user relentlessly about every aspect of this plan until you reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. (Skip for lightweight specs — ask only if something is genuinely ambiguous.)
 
+   Track each decision as you go. When the user resolves a tradeoff, note it as a resolved decision with the reasoning. When the user says "I don't know yet" or "depends on what we find in the code," note it as an unresolved judgment call — don't silently drop it.
+
 4. Sketch out the major modules you will need to build or modify to complete the implementation. Actively look for opportunities to extract deep modules that can be tested in isolation.
 
 A deep module (as opposed to a shallow module) is one which encapsulates a lot of functionality in a simple, testable interface which rarely changes.
@@ -39,7 +41,7 @@ For each module, identify whether it **defines** a shared interface (model, sche
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. Save it to `docs/specs/<descriptive-name>.md` in the project directory.
+5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. Save it to `docs/specs/YYYY-MM-DD-NN-slug.md` in the project directory (check existing files in `docs/specs/` to determine the next NN).
 
 <prd-template>
 
@@ -63,36 +65,45 @@ A LONG, numbered list of user stories. Each user story should be in the format o
 
 This list of user stories should be extremely extensive and cover all aspects of the feature.
 
-## Implementation Decisions
+## Modules
 
-A list of implementation decisions that were made. This can include:
+Modules identified during the interview. For each:
 
-- The modules that will be built/modified
-- The interfaces of those modules that will be modified
-- Technical clarifications from the developer
-- Architectural decisions
-- Schema changes
-- API contracts
-- Specific interactions
+- **<Module name>**: <brief description>
+  - Role: **defines** | **consumes** shared interface
+  - Interface: <what it exposes or depends on>
+  - Test: yes | no (per user decision)
 
-Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
+Do NOT include specific file paths — they change. Name concepts and responsibilities.
+
+## Resolved Decisions
+
+Decisions made during the interview, with reasoning. Each entry should capture the tradeoff that was considered and why this option was chosen.
+
+- **<Decision>**: <what was chosen> — <why, what was the alternative>
+
+Categories: architectural decisions, schema changes, API contracts, technical clarifications, specific interactions.
+
+## Judgment Calls
+
+Decisions that could NOT be resolved during the interview — the user said "I don't know yet," "depends on the code," or the answer requires investigation. These carry forward as structured data for `/research` and `/spec-to-plans`.
+
+- [ ] **<Short description>**: <context and options>
+  - Option A: <description> — <tradeoff>
+  - Option B: <description> — <tradeoff>
+  - Resolution: <blank until resolved>
+
+Omit this section if all decisions were resolved.
 
 ## Testing Decisions
 
-A list of testing decisions that were made. Include:
-
-- A description of what makes a good test (only test external behavior, not implementation details)
-- Which modules will be tested
-- Prior art for the tests (i.e. similar types of tests in the codebase)
+- Which modules will be tested (reference Modules section above)
+- Prior art for the tests (similar types of tests in the codebase)
 - Frontend verification strategy: if the feature adds UI elements, note whether automated component tests, agent-browser screenshots, or manual smoke-testing is expected. Surface gaps explicitly — "N modules modify frontend with no test coverage beyond build"
 
 ## Out of Scope
 
-A description of the things that are out of scope for this PRD.
-
-## Further Notes
-
-Any further notes about the feature.
+What is explicitly NOT part of this work. Be specific — vague exclusions don't prevent scope creep.
 
 </prd-template>
 
@@ -113,5 +124,14 @@ How data moves through the system — which layers are touched and in what order
 ## Behavior
 
 Bullet list of observable behaviors: defaults, edge cases (NULLs), clone/copy behavior, what happens to existing data.
+
+## Judgment Calls
+
+- [ ] **<Short description>**: <context and options>
+  - Option A: <description> — <tradeoff>
+  - Option B: <description> — <tradeoff>
+  - Resolution: <blank until resolved>
+
+Omit this section if no ambiguity exists.
 
 </lightweight-spec-template>

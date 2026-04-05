@@ -1,6 +1,6 @@
 ---
 name: improve-codebase-architecture
-description: Explore a codebase like an AI would, surface architectural friction, discover opportunities for improving testability, and propose module-deepening refactors as GitHub issue RFCs. Use when user wants to improve the architecture of their codebase, find architectural issues, or make code more testable.
+description: Explore a codebase for architectural friction, surface opportunities for improving testability, and propose module-deepening refactors as specs. Use when user wants to improve the architecture of their codebase, find architectural issues, or make code more testable. Outputs a spec to docs/specs/ that feeds into the standard pipeline.
 ---
 
 A **deep module** (John Ousterhout, "A Philosophy of Software Design") has "a small interface hiding a large implementation." Deep modules are more testable, more AI-navigable, and let you test at the boundary instead of inside.
@@ -67,6 +67,46 @@ After comparing, give your own recommendation: which design you think is stronge
 
 ### 6. User picks an interface (or accepts recommendation)
 
-### 7. Create GitHub issue
+### 7. Write spec
 
-Create a refactor RFC as a GitHub issue using `gh issue create`. Use the template in [REFERENCE.md](REFERENCE.md). Do NOT ask the user to review before creating — just create it and share the URL.
+Write the chosen design as a spec to `docs/specs/YYYY-MM-DD-NN-slug.md` (check existing files to determine the next NN). Use the lightweight spec template from `/grill-me` as the base, extended with architecture-specific sections:
+
+```markdown
+## Problem
+
+The architectural friction: which modules are shallow and tightly coupled, what integration risk exists, why this makes the codebase harder to navigate and maintain.
+
+## Solution
+
+The chosen interface design:
+- Interface signature (types, methods, params)
+- Usage example showing how callers use it
+- What complexity it hides internally
+
+## Dependency Strategy
+
+Which category applies (from [REFERENCE.md](REFERENCE.md)) and how dependencies are handled:
+- **In-process**: merged directly
+- **Local-substitutable**: tested with [specific stand-in]
+- **Ports & adapters**: port definition, production adapter, test adapter
+- **Mock**: mock boundary for external services
+
+## Data Flow
+
+How data moves through the deepened module — which layers are touched and in what order.
+
+## Behavior
+
+- What the module should own (responsibilities)
+- What it should hide (implementation details)
+- What it should expose (the interface contract)
+- How callers should migrate to the new interface
+
+## Testing Strategy
+
+- New boundary tests to write (behaviors to verify at the interface)
+- Old tests to delete (shallow module tests that become redundant)
+- Test environment needs (local stand-ins, adapters)
+```
+
+This spec is now a first-class pipeline artifact — the user can run `/research` against it to map it to concrete files, then `/spec-to-plans` to break it into vertical slices.

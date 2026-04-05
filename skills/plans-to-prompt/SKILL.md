@@ -15,9 +15,15 @@ This skill is often run in the same session as `grill-me` and `spec-to-plans`. B
 
 If running in a fresh context without prior planning conversation, fall back to reading everything from disk.
 
-## 1. Gather plans
+## 1. Gather plans and research
 
-**Always glob `docs/plans/*.md` and scan every file.** This is non-negotiable even if you just created the plans — there may be pre-existing plans from earlier sessions that are prerequisites or already completed.
+**Always glob `docs/plans/*.md` and scan every file.**
+
+Also check `docs/research/` for research artifacts. If any exist, read them — they contain:
+- **File Map**: enriches agent briefings with concrete file paths and line numbers
+- **Judgment Calls**: unresolved items must appear at the top of the orchestration prompt
+- **Patterns & Conventions**: feeds into agent briefing pattern-following sections
+- **Dependencies & Compatibility**: informs gate design and blockers This is non-negotiable even if you just created the plans — there may be pre-existing plans from earlier sessions that are prerequisites or already completed.
 
 For each plan file, do a fast triage read (title, "Blocked by", and checkbox status). Categorize into:
 
@@ -67,10 +73,10 @@ Only parallelize when ALL of these are true:
 When in doubt, serialize. A merge conflict or subtle interaction bug costs more than the time saved by parallelizing.
 
 ```
-Step 1: plan-01  ← no blockers
-Step 2: plan-03  ← no blockers, but shares config with plan-01, so serial
-Step 3: plan-02  ← blocked by plan-01
-Step 4: plan-04, plan-05  ← blocked by plan-02, truly disjoint, parallel OK
+Step 1: 2026-04-04-01-data-model  ← no blockers
+Step 2: 2026-04-04-03-config       ← no blockers, but shares config with step 1, so serial
+Step 3: 2026-04-04-02-auth         ← blocked by step 1
+Step 4: 2026-04-04-04-billing, 2026-04-04-05-reporting  ← blocked by step 3, truly disjoint, parallel OK
 ```
 
 Flag HITL plans — these require user checkpoints.
@@ -248,16 +254,27 @@ Backend gets automated test coverage from test suites. Frontend often gets only 
 
 ## 7. Generate the prompt document
 
-Write the orchestration prompt to `docs/prompts/orchestration-prompt.md` (or a name the user specifies).
+Write the orchestration prompt to `docs/prompts/YYYY-MM-DD-NN-slug.md` (e.g., `docs/prompts/2026-04-04-01-billing-feature.md`). Check existing files to determine the next NN.
 
 Use this structure:
 
 ```markdown
 # Orchestration Prompt: <spec name>
 
+## Unresolved Judgment Calls
+
+> **DO NOT proceed past this section until all items are resolved.**
+
+- [ ] <judgment call from research artifact or plans>
+  - Option A: ...
+  - Option B: ...
+
+*(Omit this section if all judgment calls are resolved.)*
+
 ## Project context
 
 - Working directory: <path>
+- Research: `docs/research/<artifact>.md` (if available)
 - Build: `$BUILD_CMD`
 - Test: `$TEST_CMD`
 - Lint: `$LINT_CMD`

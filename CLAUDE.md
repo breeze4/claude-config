@@ -23,7 +23,10 @@ Do not be bubbly or charming. Do not say nice things about my ideas. Be firm and
 
 Consult `docs/specs/02-app-spec.md` before beginning any plan. If the new thing needing to be planned is not in the spec, once you've thought of it, add it to the spec. Integrate it in the right section. Do not reformat other parts of the spec. Treat it as additive. If it needs to be reorganized I will do that.
 
-Specs are numbered sequentially with a zero-padded prefix: `docs/specs/NN-descriptive-name.md` (e.g. `05-per-section-meters.md`). Check existing files to determine the next number.
+All pipeline artifacts (specs, research, plans, prompts) use a consistent naming convention:
+`YYYY-MM-DD-NN-slug.md` where NN is a zero-padded sequence number within that directory.
+Examples: `docs/specs/2026-04-04-01-per-section-meters.md`, `docs/plans/2026-04-04-03-auth-flow.md`.
+Check existing files to determine the next NN.
 
 When creating the spec/plan, do not be putting code into the spec. Use psuedocode if needed for key algorithms, but mostly if its just routine stuff do not put code in the spec.
 
@@ -35,11 +38,11 @@ Never add AI as a co-author in git commits. Never mention AI or Claude in commit
 
 ## Task Management
 
-1. **Plan First**: Write plan to `docs/plans/<descriptive-plan-name>.md` with checkable items
+1. **Plan First**: Write plan to `docs/plans/YYYY-MM-DD-NN-slug.md` with checkable items
 2. **Verify Plan**: Check in before starting implementation
 3. **Track Progress**: Mark items complete as you go
 4. **Explain Changes**: High-level summary at each step
-5. **Document Results**: Add review section to `docs/plans/<descriptive-plan-name>.md`
+5. **Document Results**: Add review section to the plan file
 6. **Capture Lessons**: Update `docs/lessons.md` after corrections
 
 ## Agent Browser

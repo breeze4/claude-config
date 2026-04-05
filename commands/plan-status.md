@@ -17,7 +17,7 @@ Show status of implementation plans across both locations.
 ### 2. Handle arguments
 
 - **No argument**: show all plans from both locations
-- **`$ARGUMENTS` is a string**: filter to plans whose filename contains that string (case-insensitive). If no match, list available filenames.
+- **`$ARGUMENTS` is a string**: filter to plans whose filename contains that string (case-insensitive, matches against slug portion). If no match, list available filenames.
 - **`$ARGUMENTS` is "close"**: archive all fully-complete project plans (see step 6)
 
 ### 3. Parse each plan

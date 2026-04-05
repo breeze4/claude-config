@@ -3,22 +3,30 @@
 auth.json
 
 # Session and runtime data
+backups/
 cache/
 debug/
 file-history/
+graveyard/
 history.jsonl
 ide/
 paste-cache/
 plans/
 session-env/
+sessions/
 shell-snapshots/
+tasks/
 todos/
 
 # Project-specific state (per-repo settings)
 projects/
 
-# Plugin marketplaces (external repos)
-plugins/marketplaces/
+# Plugins (managed by Claude Code)
+plugins/
+
+# Prompts and teams
+prompts/
+teams/
 
 # Personal settings (may contain sensitive config)
 settings.json

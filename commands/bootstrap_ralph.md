@@ -104,3 +104,18 @@ Before writing any files:
 - If user has existing CLAUDE.md, merge rather than replace
 - Generated config should reference existing tools, not add new ones
 - Be explicit about what Ralph will and won't do based on configuration
+
+### Critical: Non-Interactive Claude Invocation
+
+When generating ralph scripts that invoke `claude`, you MUST include both of these flags:
+
+1. **`--dangerously-skip-permissions`** — Without this, claude blocks waiting for interactive permission prompts it can never receive in a headless/scripted context.
+2. **`--print`** — Without this, piping claude output (e.g. through `tee` for logging) causes SIGTTOU (TTY stop signal) because the pipe removes the terminal. Claude suspends silently and never produces output.
+
+Additionally, use **process substitution** `> >(tee "$LOG_FILE") 2>&1` instead of a pipe `| tee "$LOG_FILE"` to avoid the TTY issue.
+
+Example of correct invocation:
+```bash
+timeout "$TIMEOUT" claude --dangerously-skip-permissions --print -p "$PROMPT" \
+  > >(tee "$LOG_FILE") 2>&1 || EXIT_CODE=$?
+```
